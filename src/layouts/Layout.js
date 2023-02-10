@@ -1,13 +1,16 @@
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import { Container } from "@mui/material";
-import React from "react";
+
+import styles from "@/styles/Layout.module.css";
 
 const Layout = ({ children }) => {
   return (
     <>
       <Navbar />
-      <Container maxWidth="lg">{children}</Container>
+      <Container className={styles.container} maxWidth="lg">
+        {children}
+      </Container>
       <Footer />
     </>
   );
