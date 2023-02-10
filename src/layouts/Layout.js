@@ -8,8 +8,7 @@ const Layout = ({ children }) => {
     <>
       <Navbar />
       <Container maxWidth="lg">{children}</Container>
-
-      {/* <Footer /> */}
+      <Footer />
     </>
   );
 };
