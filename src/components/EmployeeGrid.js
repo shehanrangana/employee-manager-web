@@ -7,7 +7,7 @@ const EmployeeGrid = ({ employees }) => {
     return (
       <Grid container spacing={4} data-testid="employee-grid">
         {employees.map((emp, i) => (
-          <Grid key={i} item xs={8} sm={6} md={3}>
+          <Grid key={i} item xs={12} sm={6} md={4} lg={3}>
             <EmployeeCard
               id={emp._id}
               firstName={emp.firstName}
