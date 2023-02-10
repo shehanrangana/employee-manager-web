@@ -58,7 +58,7 @@ const EmployeeCard = ({ id, firstName, lastName, email, number, gender, photo })
 };
 
 EmployeeCard.propTypes = {
-  id: PropTypes.string.isRequired,
+  id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
   firstName: PropTypes.string.isRequired,
   lastName: PropTypes.string.isRequired,
   email: PropTypes.string,

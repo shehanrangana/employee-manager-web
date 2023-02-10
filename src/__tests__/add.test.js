@@ -8,7 +8,7 @@ jest.mock("next/router", () => require("next-router-mock"));
 describe("AddForm", () => {
   const initialState = {
     employees: {
-      create: {
+      submit: {
         loading: false,
         success: false,
       },

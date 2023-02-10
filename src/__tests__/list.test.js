@@ -43,7 +43,7 @@ describe("EmployeeHome", () => {
 
   it("Layout should change when switch layout button is clicked", () => {
     const newState = { ...initialState };
-    newState.employees.all.data.push({ _id: 1, firstName: "", lastName: "", email: "", number: "", gender: "" });
+    newState.employees.all.data.push({ _id: "1", firstName: "", lastName: "", email: "", number: "", gender: "" });
 
     const store = mockStore(newState);
     const { getByTitle, getByLabelText, getByTestId } = render(

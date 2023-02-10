@@ -12,6 +12,10 @@ describe("EditForm", () => {
         data: {},
         loading: false,
       },
+      submit: {
+        loading: false,
+        success: false,
+      },
     },
   };
 
