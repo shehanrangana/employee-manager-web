@@ -16,7 +16,7 @@ const defaultValues = {
 const AddForm = () => {
   const dispatch = useDispatch();
   const router = useRouter();
-  const createState = useSelector((state) => state.employees.create);
+  const submitState = useSelector((state) => state.employees.submit);
 
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -26,11 +26,11 @@ const AddForm = () => {
   };
 
   useEffect(() => {
-    if (isSubmitting && !createState.loading && createState.success) {
+    if (isSubmitting && !submitState.loading && submitState.success) {
       router.push("/employee/list");
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [createState]);
+  }, [submitState]);
 
   return (
     <>

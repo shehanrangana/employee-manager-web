@@ -7,7 +7,7 @@ const initialState = {
     data: [],
     loading: false,
   },
-  create: {
+  submit: {
     loading: false,
     success: false,
   },
@@ -17,9 +17,10 @@ const initialState = {
   },
 };
 
-export const getEmployees = createAsyncThunk("employees/getEmployees", async () => {
+export const getEmployees = createAsyncThunk("employees/getEmployees", async (queryParams = {}) => {
   try {
-    const response = await employeeService.getEmployees();
+    const { orderBy, order } = queryParams;
+    const response = await employeeService.getEmployees(orderBy, order);
     return response.data;
   } catch (error) {
     throw error;
@@ -83,17 +84,17 @@ const employeeSlice = createSlice({
     });
 
     builder.addCase(createEmployee.pending, (state) => {
-      state.create.loading = true;
-      state.create.success = false;
+      state.submit.loading = true;
+      state.submit.success = false;
     });
     builder.addCase(createEmployee.fulfilled, (state, { payload }) => {
       state.all.data.push(payload);
-      state.create.loading = false;
-      state.create.success = true;
+      state.submit.loading = false;
+      state.submit.success = true;
     });
     builder.addCase(createEmployee.rejected, (state) => {
-      state.create.loading = false;
-      state.create.success = false;
+      state.submit.loading = false;
+      state.submit.success = false;
     });
 
     builder.addCase(deleteEmployee.fulfilled, (state, { payload }) => {
@@ -112,22 +113,21 @@ const employeeSlice = createSlice({
     });
 
     builder.addCase(updateEmployee.pending, (state) => {
-      state.create.loading = true;
-      state.create.success = false;
+      state.submit.loading = true;
+      state.submit.success = false;
     });
     builder.addCase(updateEmployee.fulfilled, (state, { payload }) => {
       const index = state.all.data.findIndex((el) => el._id === payload._id);
       if (index >= 0) {
-        console.log({ index, payload });
         state.all.data[index] = payload;
       }
 
-      state.create.loading = false;
-      state.create.success = true;
+      state.submit.loading = false;
+      state.submit.success = true;
     });
     builder.addCase(updateEmployee.rejected, (state) => {
-      state.create.loading = false;
-      state.create.success = false;
+      state.submit.loading = false;
+      state.submit.success = false;
     });
   },
 });

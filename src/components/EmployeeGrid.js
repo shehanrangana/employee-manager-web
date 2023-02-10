@@ -1,6 +1,6 @@
 import { Grid } from "@mui/material";
-import React from "react";
 import EmployeeCard from "./EmployeeCard";
+import PropTypes from "prop-types";
 
 const EmployeeGrid = ({ employees }) => {
   if (employees?.length) {
@@ -24,6 +24,10 @@ const EmployeeGrid = ({ employees }) => {
   } else {
     return null;
   }
+};
+
+EmployeeGrid.propTypes = {
+  employees: PropTypes.array,
 };
 
 export default EmployeeGrid;

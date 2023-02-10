@@ -17,7 +17,7 @@ const EmployeeHome = () => {
   const router = useRouter();
   const employees = useSelector((state) => state.employees.all.data);
 
-  const [isListView, setIsListView] = useState(false);
+  const [isListView, setIsListView] = useState(undefined);
 
   const changeLayout = () => {
     setIsListView(!isListView);
@@ -34,6 +34,16 @@ const EmployeeHome = () => {
     setIsListView(value);
   }, []);
 
+  const renderContent = () => {
+    if (isListView === undefined) {
+      return null;
+    } else if (isListView) {
+      return <EmployeeList employees={employees} />;
+    } else {
+      return <EmployeeGrid employees={employees} />;
+    }
+  };
+
   return (
     <>
       <Head>
@@ -49,7 +59,7 @@ const EmployeeHome = () => {
         </Fab>
       </Box>
 
-      {isListView ? <EmployeeList employees={employees} /> : <EmployeeGrid employees={employees} />}
+      {renderContent()}
     </>
   );
 };

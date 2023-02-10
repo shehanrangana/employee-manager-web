@@ -10,8 +10,9 @@ export const employeeService = {
   updateEmployee,
 };
 
-function getEmployees() {
-  return apiService.get(`${PREFIX}`);
+function getEmployees(orderBy, order) {
+  const params = orderBy && order ? { orderBy, order } : {};
+  return apiService.get(`${PREFIX}`, { params });
 }
 
 function createEmployee(data) {

@@ -6,6 +6,7 @@ import EditIcon from "@mui/icons-material/Edit";
 import { Card, CardContent, CardMedia, Fab, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import { useRouter } from "next/router";
+import PropTypes from "prop-types";
 import { useDispatch } from "react-redux";
 
 const EmployeeCard = ({ id, firstName, lastName, email, number, gender, photo }) => {
@@ -43,10 +44,10 @@ const EmployeeCard = ({ id, firstName, lastName, email, number, gender, photo })
             </Typography>
           </div>
           <div>
-            <Fab color="error" size="small" sx={{ mr: 1 }} onClick={confirmDelete}>
+            <Fab color="error" size="small" sx={{ mr: 1, boxShadow: 2 }} onClick={confirmDelete}>
               <DeleteIcon />
             </Fab>
-            <Fab color="success" size="small" onClick={navigateToEditScreen}>
+            <Fab color="success" size="small" sx={{ boxShadow: 2 }} onClick={navigateToEditScreen}>
               <EditIcon />
             </Fab>
           </div>
@@ -54,6 +55,16 @@ const EmployeeCard = ({ id, firstName, lastName, email, number, gender, photo })
       </CardContent>
     </Card>
   );
+};
+
+EmployeeCard.propTypes = {
+  id: PropTypes.string.isRequired,
+  firstName: PropTypes.string.isRequired,
+  lastName: PropTypes.string.isRequired,
+  email: PropTypes.string,
+  number: PropTypes.string,
+  gender: PropTypes.string,
+  photo: PropTypes.string,
 };
 
 export default EmployeeCard;

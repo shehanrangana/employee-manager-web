@@ -17,6 +17,7 @@ import { useRouter } from "next/router";
 import PropTypes from "prop-types";
 import { useMemo } from "react";
 import { Controller, useForm } from "react-hook-form";
+import { useSelector } from "react-redux";
 import * as yup from "yup";
 import RoundedButton from "./RoundedButton";
 
@@ -51,6 +52,7 @@ const EmployeeForm = ({ isEdit, defaultValues, onSubmit }) => {
   });
 
   const router = useRouter();
+  const isSubmitting = useSelector((state) => state.employees.submit.loading);
 
   const navigateToHomeScreen = () => {
     router.push("/employee/list");
@@ -158,7 +160,7 @@ const EmployeeForm = ({ isEdit, defaultValues, onSubmit }) => {
             />
 
             <Box display="flex" justifyContent="flex-end">
-              <Button type="submit" variant="outlined" sx={{ mt: 3 }}>
+              <Button type="submit" variant="outlined" disabled={isSubmitting} sx={{ mt: 3 }}>
                 {buttonLabel}
               </Button>
             </Box>

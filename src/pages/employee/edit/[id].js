@@ -11,7 +11,7 @@ const EditForm = () => {
   const router = useRouter();
 
   const employee = useSelector((state) => state.employees.selected.data);
-  const createState = useSelector((state) => state.employees.create);
+  const submitState = useSelector((state) => state.employees.submit);
 
   const { _id, firstName, lastName, email, number, gender } = employee;
   const defaultValues = { firstName, lastName, email, number, gender };
@@ -24,11 +24,11 @@ const EditForm = () => {
   };
 
   useEffect(() => {
-    if (isSubmitting && !createState.loading && createState.success) {
+    if (isSubmitting && !submitState.loading && submitState.success) {
       router.push("/employee/list");
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [createState, isSubmitting]);
+  }, [submitState, isSubmitting]);
 
   return (
     <>
